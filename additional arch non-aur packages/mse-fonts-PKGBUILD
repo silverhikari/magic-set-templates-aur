@@ -1,17 +1,17 @@
 # Maintainer: silverhikari
-_pkgname="Full-Magic-Pack"
+_pkgname="Font-Pack"
 pkgname=mse-fonts
-pkgver=1.0.0
+pkgver=2.1.2
 pkgrel=1
 arch=('any')
 depends=('magicseteditor')
-source=("${_pkgname}-${pkgver}.zip::https://github.com/MagicSetEditorPacks/Full-Magic-Pack/archive/refs/heads/main.zip")
-sha256sums=('6e01982ba840ba5987e5f2e05651df210b2a34014b1b686c8b8833a45216a964')
+source=("${_pkgname}-${pkgver}::https://github.com/MagicSetEditorPacks/Font-Pack/archive/refs/heads/main.zip")
+sha256sums=('SKIP')
 
 
 package()
 {
-	cd "$srcdir/${_pkgname}-main/Magic - Fonts/"
+	cd "$srcdir/${_pkgname}-main/Magic - M15/"
 	mkdir -p "$pkgdir/usr/share/fonts/mse/"
 
 	# https://stackoverflow.com/questions/20228751/copy-all-unique-files-in-a-directory-based-on-hashes#20228997
@@ -23,7 +23,7 @@ package()
 	done < <(sha256sum *.{ttf,otf})
 
 
-	cd "./template specific fonts/"
+	cd "$srcdir/${_pkgname}-main/Magic - Other Templates/"
 	while read hash name
 	do
 		files[$hash]="$(realpath "$name")"
